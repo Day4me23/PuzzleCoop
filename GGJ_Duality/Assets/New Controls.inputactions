@@ -2,7 +2,7 @@
     "name": "New Controls",
     "maps": [
         {
-            "name": "Player 1",
+            "name": "PlayerControls",
             "id": "0224c6b1-6861-4099-a5f6-eed7c8a060fd",
             "actions": [
                 {
@@ -10,6 +10,30 @@
                     "type": "Value",
                     "id": "834e4a7f-c2fb-4c13-bf74-bc91df131ae5",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "401ab45d-91f0-4796-ac27-9d8b19e8934a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "CameraX",
+                    "type": "PassThrough",
+                    "id": "0d6945c4-e9aa-4d1c-80bc-55187e3841d9",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "CameraY",
+                    "type": "PassThrough",
+                    "id": "4c771596-97e6-431d-be21-08a7e6762d2f",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
                 }
@@ -80,88 +104,72 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Player 2",
-            "id": "3f3b9b97-adb2-4f73-a281-82f6d05d6f3a",
-            "actions": [
-                {
-                    "name": "Movement",
-                    "type": "Value",
-                    "id": "ba387a68-860d-4d1f-8949-66926d56e3be",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": ""
-                }
-            ],
-            "bindings": [
+                },
                 {
                     "name": "",
-                    "id": "059d95b2-263f-404e-aa1b-35a71050719b",
-                    "path": "",
+                    "id": "f97e5a36-ca17-4b32-9644-1518308921d2",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Movement",
+                    "groups": "KeyboardMouse",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Keyboard",
-                    "id": "3e1884b6-eb82-4afa-a38a-f61d59654a13",
-                    "path": "2DVector",
+                    "name": "",
+                    "id": "f906a60d-9e99-41e3-8205-83aad249bc4e",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": true,
+                    "groups": "Controller",
+                    "action": "Jump",
+                    "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
-                    "id": "8c9f8714-0102-4a42-8e45-e70770ea2d5e",
-                    "path": "<Keyboard>/upArrow",
+                    "name": "",
+                    "id": "07e33e28-df61-4877-9f4d-79db1f66362f",
+                    "path": "<Mouse>/delta/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
-                    "action": "Movement",
+                    "action": "CameraX",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 },
                 {
-                    "name": "down",
-                    "id": "5f9c27a8-6ae6-49f5-af5c-9699ee54f0ee",
-                    "path": "<Keyboard>/downArrow",
+                    "name": "",
+                    "id": "813afe99-1f34-47dc-aea9-a0353fed61fa",
+                    "path": "<Gamepad>/rightStick/x",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyboardMouse",
-                    "action": "Movement",
+                    "groups": "Controller",
+                    "action": "CameraX",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 },
                 {
-                    "name": "left",
-                    "id": "b591a2a7-f443-4e4b-a44d-d1c6b6d763bb",
-                    "path": "<Keyboard>/leftArrow",
+                    "name": "",
+                    "id": "48879f8a-c5bb-49d0-8bea-da77c5cb0ff8",
+                    "path": "<Mouse>/delta/y",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
-                    "action": "Movement",
+                    "action": "CameraY",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 },
                 {
-                    "name": "right",
-                    "id": "73622043-d3f5-49ca-921c-de41cbd5edf9",
-                    "path": "<Keyboard>/rightArrow",
+                    "name": "",
+                    "id": "aa85d919-eb59-4317-9d7c-2bb35e51dab4",
+                    "path": "<Gamepad>/rightStick/y",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyboardMouse",
-                    "action": "Movement",
+                    "groups": "Controller",
+                    "action": "CameraY",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 }
             ]
         }

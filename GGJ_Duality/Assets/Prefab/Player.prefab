@@ -111,11 +111,43 @@ MonoBehaviour:
     m_ActionName: Player 1/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: ba387a68-860d-4d1f-8949-66926d56e3be
-    m_ActionName: Player 2/Movement[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+    m_ActionId: 401ab45d-91f0-4796-ac27-9d8b19e8934a
+    m_ActionName: PlayerControls/Jump[/Keyboard/space,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5506769339595338473}
+        m_TargetAssemblyTypeName: CameraMovement, Assembly-CSharp
+        m_MethodName: CamMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0d6945c4-e9aa-4d1c-80bc-55187e3841d9
+    m_ActionName: PlayerControls/CameraX[/Mouse/delta/x,/XInputControllerWindows/rightStick/x]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5506769339595338473}
+        m_TargetAssemblyTypeName: CameraMovement, Assembly-CSharp
+        m_MethodName: CamY
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4c771596-97e6-431d-be21-08a7e6762d2f
+    m_ActionName: PlayerControls/CameraY[/Mouse/delta/y,/XInputControllerWindows/rightStick/y]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player 1
+  m_DefaultActionMap: PlayerControls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 8666685401835595093}
 --- !u!1 &8666685401120834204
@@ -225,6 +257,7 @@ GameObject:
   - component: {fileID: 8666685401835595090}
   - component: {fileID: 8666685401835595093}
   - component: {fileID: 8666685401835595091}
+  - component: {fileID: 5506769339595338473}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -321,3 +354,16 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &5506769339595338473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8666685401835595095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 105e018550d9d75419668e9e0f9ee394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: 1
