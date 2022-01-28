@@ -2,23 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Anti_Gravity : Orb
+public class Super_Speed : Orb
 {
-    //Flip the gravity
+
+    //Player should fall slower
     public override void InsertNewMechanic(PlayerMovement player) {
 
-        player.ChangeGravity();
+        player.IncreaseSpeed();
 
     }
 
     public override void RemoveThisMechanic(PlayerMovement player) {
 
 
-        player.ChangeGravity();
+        player.DecreaseSpeed();
 
     }
-
-
-
 
 }

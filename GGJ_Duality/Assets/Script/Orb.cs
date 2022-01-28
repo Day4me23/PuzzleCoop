@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Orb : MonoBehaviour
 {
-    
-    public virtual void InsertNewMechanic() {
+    public string orb_name;
+    public int orb_id; //for the list of orbs
+    public virtual void InsertNewMechanic(PlayerMovement player) {
 
     }
 
-    public virtual void RemoveThisMechanic() {
+    public virtual void RemoveThisMechanic(PlayerMovement player) {
 
     }
 
