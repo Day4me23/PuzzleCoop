@@ -4,10 +4,22 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
+    /*
+     * 
+     * Mechanics to make: 
+     * 1. Anti-Gravity
+     * 2. Slow-fall
+     * 3. Super Speed
+     * 4. Super Jump
+     * 
+     */
     [Header("Important Variables")]
     [SerializeField] private CharacterController controller;
     [SerializeField] private float speed; //movement speed
     [SerializeField] private bool canMove; //determines if the player can move or not
+
+    [Header("OrbManager")]
+    [SerializeField] private OrbHolderManager orbHolder;
 
     private Vector3 movement;
     private Vector3 velocity;
@@ -22,16 +34,20 @@ public class PlayerMovement : MonoBehaviour
     [Header("Jumping")]
     [SerializeField] private float jumpHeight = 2f;
     [SerializeField] private float gravity = -9.81f;
-
+    private bool falling; //when switching gravity
+    private bool flipped;
     private void Awake() {
         controller = GetComponent<CharacterController>();
     }
 
     private void FixedUpdate() {
         if (canMove) {
-            //isGrounded = Physics.CheckSphere(groundCheckObject.position, groundDistance);
-            //isGrounded = groundCheckObject.GetComponent<GroundCheck>().CheckGround(groundCheckObject.position, groundDistance, groundLayer);
-            isGrounded = controller.isGrounded;
+            if (falling) {
+                isGrounded = false;
+            } else {
+                isGrounded = controller.isGrounded;
+            }
+
             if (isGrounded && velocity.y < 0f) { //if player is on the ground
                 velocity.y = 0f;
             }
@@ -42,7 +58,12 @@ public class PlayerMovement : MonoBehaviour
 
             //jumping
             if(jumped && isGrounded) {
-                velocity.y += Mathf.Sqrt(jumpHeight * -2f * gravity);
+                if (!flipped) {
+                    velocity.y += Mathf.Sqrt(jumpHeight * -2f * gravity);
+                } else {
+                    velocity.y -= Mathf.Sqrt(jumpHeight * 2f * gravity);
+                }
+                
             }
             //gravity
             velocity.y += gravity * Time.deltaTime;
@@ -66,4 +87,21 @@ public class PlayerMovement : MonoBehaviour
         jumped = context.action.triggered;
     }
 
+    public void ChangeGravity() {
+        gravity *= -1f;
+        if (!flipped) {
+            flipped = true;
+        } else {
+            flipped = false;
+        }
+        
+        //flip player
+        //falling = true;
+        //Invoke("StopFalling", 1f);
+        transform.Rotate(new Vector3(0f, 0f, 180f));
+    }
+
+    private void StopFalling() {
+        falling = false;
+    }
 }

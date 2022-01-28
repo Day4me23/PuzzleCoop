@@ -5,4 +5,12 @@ using UnityEngine;
 public class Orb : MonoBehaviour
 {
     
+    public virtual void InsertNewMechanic() {
+
+    }
+
+    public virtual void RemoveThisMechanic() {
+
+    }
+
 }
