@@ -4,34 +4,49 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
+    /*
+     * 
+     * Mechanics to make: 
+     * 1. Anti-Gravity
+     * 2. Slow-fall
+     * 3. Super Speed
+     * 4. Super Jump
+     * 
+     */
     [Header("Important Variables")]
     [SerializeField] private CharacterController controller;
     [SerializeField] private float speed; //movement speed
     [SerializeField] private bool canMove; //determines if the player can move or not
+    public Transform currentCheckpoint;
+
+    [Header("OrbManager")]
+    [SerializeField] private OrbHolderManager orbHolder;
 
     private Vector3 movement;
-    private Vector3 velocity;
-    private bool jumped;
+    [SerializeField] private Vector3 velocity;
+    [SerializeField] private bool jumped;
 
     [Header("Ground Detection")]
     [SerializeField] private bool isGrounded = false; //is on the ground
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask playerLayer;
     [SerializeField] private Transform groundCheckObject;
     [SerializeField] private float groundDistance = 0.2f;
 
     [Header("Jumping")]
     [SerializeField] private float jumpHeight = 2f;
     [SerializeField] private float gravity = -9.81f;
-
+    private bool falling; //when switching gravity
+    [SerializeField] private bool flipped;
     private void Awake() {
         controller = GetComponent<CharacterController>();
     }
 
     private void FixedUpdate() {
         if (canMove) {
-            //isGrounded = Physics.CheckSphere(groundCheckObject.position, groundDistance);
-            //isGrounded = groundCheckObject.GetComponent<GroundCheck>().CheckGround(groundCheckObject.position, groundDistance, groundLayer);
-            isGrounded = controller.isGrounded;
+               // isGrounded = controller.isGrounded;
+                isGrounded = groundCheckObject.GetComponent<GroundCheck>().CheckGround(groundCheckObject.position, 0.4f, playerLayer);
+
             if (isGrounded && velocity.y < 0f) { //if player is on the ground
                 velocity.y = 0f;
             }
@@ -42,7 +57,12 @@ public class PlayerMovement : MonoBehaviour
 
             //jumping
             if(jumped && isGrounded) {
-                velocity.y += Mathf.Sqrt(jumpHeight * -2f * gravity);
+                if (!flipped) {
+                    velocity.y += Mathf.Sqrt(jumpHeight * -2f * gravity);
+                } else {
+                    velocity.y -= Mathf.Sqrt(jumpHeight * 2f * gravity);
+                }
+                
             }
             //gravity
             velocity.y += gravity * Time.deltaTime;
@@ -66,4 +86,21 @@ public class PlayerMovement : MonoBehaviour
         jumped = context.action.triggered;
     }
 
+    public void ChangeGravity() {
+        gravity *= -1f;
+        if (!flipped) {
+            flipped = true;
+            velocity.y = -1f;
+        } else {
+            flipped = false;
+        }
+        
+        //flip player
+        //Invoke("StopFalling", 1f);
+        transform.Rotate(new Vector3(0f, 0f, 180f));
+    }
+
+    private void StopFalling() {
+        falling = false;
+    }
 }

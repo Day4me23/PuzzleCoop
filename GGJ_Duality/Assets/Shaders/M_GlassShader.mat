@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5031846195777642364
+--- !u!114 &-1267108937038810178
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Shield
-  m_Shader: {fileID: -6465566751694194690, guid: e4189dfffd83f014288c2c6b89c36a5b, type: 3}
+  m_Name: M_GlassShader
+  m_Shader: {fileID: -6465566751694194690, guid: d72d83ac827da21428322cd3eb855129, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -32,14 +32,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_51007c856dcb4839b3149649f04ef12b:
-        m_Texture: {fileID: 2800000, guid: 7a1a4bbda934eec44baf78259367217c, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_5500b632215a4f0f9cfc98aaf2efb09c:
-        m_Texture: {fileID: 2800000, guid: ba14bbf1c165ca648a10bc7705df8b52, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -65,7 +57,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c28a0155fc36564429e453ab0be4d734, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -97,11 +89,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_2bf4fce00de54a0d876eee45975610f3: 0.748
-    - Vector1_6939a7c509e647d6a0223d6b60173685: 0.424
-    - Vector1_75ee03b21a6945e7a47619522eb5d194: 2.03
-    - Vector1_a281b1f05bc64d029c9b57689901334f: 0.609
-    - Vector1_b42286023b0746c5969c4cf9360f0d57: 0.287
+    - Vector1_106cb1b2f919430e949ea47aee9b0081: 1
+    - Vector1_139da4ba521d4785b04e815304ed2ad4: 0.903
+    - Vector1_709de4ba8f684b1580ed2006a6671023: 0.613
+    - Vector1_b082e55657804975ae0c2c0cf1f01b73: 0.297
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -129,9 +120,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_cfea6b6e3f0648b085a158410f350920: {r: 0.23339868, g: 1, b: 0.09019607, a: 0}
-    - Vector2_9a6ba301df4d43298e51f649cdfbbd6a: {r: 7, g: 7, b: 0, a: 0}
-    - Vector2_d330fa9a5a414108be25ae6f54a48b64: {r: 5, g: 5, b: 0, a: 0}
+    - Color_b4aadc68a65346a289aced749f82c4e9: {r: 0, g: 1, b: 0.057555176, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
