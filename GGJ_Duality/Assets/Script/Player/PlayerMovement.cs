@@ -17,17 +17,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CharacterController controller;
     [SerializeField] private float speed; //movement speed
     [SerializeField] private bool canMove; //determines if the player can move or not
+    public Transform currentCheckpoint;
 
     [Header("OrbManager")]
     [SerializeField] private OrbHolderManager orbHolder;
 
     private Vector3 movement;
-    private Vector3 velocity;
-    private bool jumped;
+    [SerializeField] private Vector3 velocity;
+    [SerializeField] private bool jumped;
 
     [Header("Ground Detection")]
     [SerializeField] private bool isGrounded = false; //is on the ground
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask playerLayer;
     [SerializeField] private Transform groundCheckObject;
     [SerializeField] private float groundDistance = 0.2f;
 
@@ -35,18 +37,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpHeight = 2f;
     [SerializeField] private float gravity = -9.81f;
     private bool falling; //when switching gravity
-    private bool flipped;
+    [SerializeField] private bool flipped;
     private void Awake() {
         controller = GetComponent<CharacterController>();
     }
 
     private void FixedUpdate() {
         if (canMove) {
-            if (falling) {
-                isGrounded = false;
-            } else {
-                isGrounded = controller.isGrounded;
-            }
+               // isGrounded = controller.isGrounded;
+                isGrounded = groundCheckObject.GetComponent<GroundCheck>().CheckGround(groundCheckObject.position, 0.4f, playerLayer);
 
             if (isGrounded && velocity.y < 0f) { //if player is on the ground
                 velocity.y = 0f;
@@ -91,12 +90,12 @@ public class PlayerMovement : MonoBehaviour
         gravity *= -1f;
         if (!flipped) {
             flipped = true;
+            velocity.y = -1f;
         } else {
             flipped = false;
         }
         
         //flip player
-        //falling = true;
         //Invoke("StopFalling", 1f);
         transform.Rotate(new Vector3(0f, 0f, 180f));
     }
