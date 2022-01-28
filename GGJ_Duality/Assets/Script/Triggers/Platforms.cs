@@ -25,20 +25,21 @@ public class Platforms : Triggerable
 
         if (active) 
         {
-            percent += nodes[nodeCur].GetSpeed(backtrack) * Time.deltaTime;
+            percent += nodes[nodeCur].GetSpeed(backtracking) * Time.deltaTime;
             transform.position = Vector3.Lerp(nodes[nodeCur].pos, nodes[nodeTar].pos, percent);
 
             if (percent >= 1f) 
             {
-                NextNode();
+                StartCoroutine(NextNode());
                 percent = 0;
             }
         }
     }
 
-    void NextNode() 
+    IEnumerator NextNode() 
     {
         nodeCur = nodeTar;
+        yield return new WaitForSecondsRealtime(nodes[nodeCur].GetWait(backtracking));
         if (!backtrack) 
         {
             if (nodeTar == nodes.Count - 1)
@@ -76,14 +77,19 @@ public class Platforms : Triggerable
             other.transform.parent = GameObject.Find("Env").transform;
     }
 }
-[SerializeField]
+[System.Serializable]
 public struct node
 {
     public Vector3 pos;
-    [SerializeField] float speedMain, speedBack, waitMain, WaitBack;
+    [Range(0,2)][SerializeField] float speedMain, speedBack, waitMain, WaitBack;
     public float GetSpeed(bool backtracking)
     {
         if (!backtracking) return speedMain;
         return speedBack;
+    }
+    public float GetWait(bool backtracking)
+    {
+        if (!backtracking) return waitMain;
+        return WaitBack;
     }
 }
