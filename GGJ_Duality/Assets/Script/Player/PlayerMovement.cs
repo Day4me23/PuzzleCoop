@@ -2,24 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class PlayerMovement : MonoBehaviour
-{
+public class PlayerMovement : MonoBehaviour {
     /*
      * 
      * Mechanics to make: 
      * 1. Anti-Gravity DONE
      * 2. Slow-fall DONE
-     * 3. Super Speed 
-     * 4. Super Jump
+     * 3. Super Speed DONE
+     * 4. Fast Fall
      * 
      */
     [Header("Important Variables")]
-    [SerializeField] private CharacterController controller;
-    [SerializeField] private float speed; //movement speed
-    private float defaultSpeed = 3;
-    private float superSpeed = 9;
-    [SerializeField] private bool canMove; //determines if the player can move or not
     public Transform currentCheckpoint;
+    public PlayerMovement oppositePlayer; // <--- the other player in the game
+    [SerializeField] private CharacterController controller;
+    [SerializeField] private bool canMove; //determines if the player can move or not
+    
+
+    #region Speed Variables
+        [SerializeField] private float speed; //movement speed
+        private float defaultSpeed = 3f;
+        private float superSpeed = 9f;
+        private float slowSpeed = 1f;
+    #endregion
+    #region Falling Variables
+        [SerializeField] private float gravity = -9.81f;
+        [SerializeField] private float fallSpeed; //for slow fall
+        private float defaultFallSpeed = 1f;
+        private float superFallSpeed = 2f;
+        private float slowFallSpeed = 0.4f;
+        private bool falling; //when switching gravity
+    #endregion
 
     [Header("OrbManager")]
     [SerializeField] private OrbHolderManager orbHolder;
@@ -37,13 +50,13 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Jumping")]
     [SerializeField] private float jumpHeight = 2f;
-    [SerializeField] private float gravity = -9.81f;
-    [SerializeField] private float fallSpeed; //for slow fall
-    private bool falling; //when switching gravity
+    private float defaultJumpHeight;
+    private float superJumpHeight;
+    
     [SerializeField] private bool flipped;
     private void Awake() {
         controller = GetComponent<CharacterController>();
-        
+
     }
     private void Start() {
         DefaultState();
@@ -56,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (isGrounded && velocity.y < 0f && !flipped) { //if player is on the ground
                 velocity.y = 0f;
-            } else if(isGrounded && velocity.y > 0f && flipped) {
+            } else if (isGrounded && velocity.y > 0f && flipped) {
                 velocity.y = 0f;
             }
 
@@ -65,13 +78,13 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(m * Time.deltaTime);
 
             //jumping
-            if(jumped && isGrounded) {
+            if (jumped && isGrounded) {
                 if (!flipped) {
                     velocity.y += Mathf.Sqrt(jumpHeight * -2f * gravity);
                 } else {
                     velocity.y -= Mathf.Sqrt(jumpHeight * 2f * gravity);
                 }
-                
+
             }
             //gravity
             velocity.y += gravity * fallSpeed * Time.deltaTime;
@@ -101,38 +114,62 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, 0);
         flipped = false;
         speed = defaultSpeed;
+        fallSpeed = defaultFallSpeed;
+
     }
 
+
+
+    #region GRAVITY MECHANIC
     public void ChangeGravity() {
         gravity *= -1f;
         if (!flipped) {
             flipped = true;
             velocity.y = -1f;
-        } else {
+        }
+        else {
             flipped = false;
         }
+
         
+
         //flip player
         //Invoke("StopFalling", 1f);
         transform.Rotate(new Vector3(0f, 0f, 180f));
     }
 
-    public void DecreaseFallingSpeed() {
-        fallSpeed = 0.4f;
+    #endregion
+    #region SPEED MECHANIC
+    public void SlowSpeed() {
+        speed = slowSpeed;
+        
     }
 
-    public void IncreaseFallingSpeed() {
-        fallSpeed = 1f;
-    }
-
-    public void DecreaseSpeed() {
-        speed = defaultSpeed;
-    }
-
-    public void IncreaseSpeed() {
+    public void FastSpeed() {
         speed = superSpeed;
+        oppositePlayer.SlowSpeed();
     }
-    private void StopFalling() {
-        falling = false;
+
+    public void NormalSpeed() {
+        speed = defaultSpeed;
+        oppositePlayer.NormalSpeed();
     }
+    #endregion
+    #region FALLING MECHANIC
+    public void SlowFall() {
+        fallSpeed = slowFallSpeed;
+        oppositePlayer.FastFall();
+    }
+
+    public void FastFall() {
+        fallSpeed = superFallSpeed;
+        
+    }
+
+    public void NormalFall() {
+        fallSpeed = defaultFallSpeed;
+        oppositePlayer.NormalFall();
+    }
+    #endregion
+
 }
