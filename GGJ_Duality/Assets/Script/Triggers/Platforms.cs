@@ -5,7 +5,6 @@ using UnityEngine;
 public class Platforms : Triggerable
 {
     [Header("Platform")]
-    [SerializeField] float speed = 1.0f;
     [SerializeField] bool backtrack = false;
 
     [SerializeField] List<node> nodes = new List<node>();
