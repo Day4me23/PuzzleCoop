@@ -26,12 +26,7 @@ public class Platforms : Triggerable
         {
             percent += nodes[nodeCur].GetSpeed(backtracking) * Time.deltaTime;
             transform.position = Vector3.Lerp(nodes[nodeCur].pos, nodes[nodeTar].pos, percent);
-
-            if (percent >= 1f) 
-            {
-                StartCoroutine(NextNode());
-                percent = 0;
-            }
+            if (percent >= 1f) StartCoroutine(NextNode());
         }
     }
 
@@ -63,6 +58,7 @@ public class Platforms : Triggerable
                 else nodeTar++;
             }
         }
+        percent = 0;
     }
 
     private void OnTriggerEnter(Collider other)
