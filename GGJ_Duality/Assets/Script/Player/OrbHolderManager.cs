@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OrbHolderManager : MonoBehaviour
 {
-    private int firstOrb, secondOrb;
+    private int firstOrb = -1, secondOrb = -1;
     [SerializeField] private string firstOrbName, secondOrbName;
     public bool AddOrb(Orb orb) {
         if(firstOrb == -1) {
@@ -39,11 +39,9 @@ public class OrbHolderManager : MonoBehaviour
         if(firstOrb != -1) {
             OrbList.instance.orbMechanics[firstOrb].GetComponent<Orb>().InsertNewMechanic(gameObject.GetComponent<PlayerMovement>());
         }
-            //firstOrb.GetComponent<Orb>().InsertNewMechanic(gameObject.GetComponent<PlayerMovement>());
         if(secondOrb != -1) {
             OrbList.instance.orbMechanics[secondOrb].GetComponent<Orb>().InsertNewMechanic(gameObject.GetComponent<PlayerMovement>());
         }
-           // secondOrb.GetComponent<Orb>().InsertNewMechanic(gameObject.GetComponent<PlayerMovement>());
     }
 
 

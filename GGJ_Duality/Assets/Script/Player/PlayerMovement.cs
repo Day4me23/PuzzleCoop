@@ -9,8 +9,8 @@ public class PlayerMovement : MonoBehaviour
      * Mechanics to make: 
      * 1. Anti-Gravity DONE
      * 2. Slow-fall DONE
-     * 3. Super Speed 
-     * 4. Super Jump
+     * 3. Super Speed DONE
+     * 4. Fast Fall
      * 
      */
     [Header("Important Variables")]
@@ -37,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Jumping")]
     [SerializeField] private float jumpHeight = 2f;
+    private float defaultJumpHeight;
+    private float superJumpHeight;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float fallSpeed; //for slow fall
     private bool falling; //when switching gravity

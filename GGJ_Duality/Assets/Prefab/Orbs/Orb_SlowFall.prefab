@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orb_name: Slow Fall
-  orb_id: 0
+  orb_id: 1
 --- !u!54 &3979380048065455219
 Rigidbody:
   m_ObjectHideFlags: 0
