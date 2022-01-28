@@ -12,6 +12,8 @@ public class Platforms : Triggerable
     int nodeCur = 0;
     int nodeTar = 1;
     bool backtracking = false;
+    bool paused = false;
+    [SerializeField] readonly float circut;
 
     private void FixedUpdate() 
     {
@@ -21,19 +23,24 @@ public class Platforms : Triggerable
             return;
         }
 
-        if (active) 
+        if (active)
         {
-            percent += nodes[nodeCur].GetSpeed(backtracking) * Time.deltaTime;
+            if (!paused) percent += nodes[nodeCur].GetSpeed(backtracking) * Time.deltaTime;
             transform.position = Vector3.Lerp(nodes[nodeCur].pos, nodes[nodeTar].pos, percent);
-            if (percent >= 1f) StartCoroutine(NextNode());
+            if (percent >= 1f)
+            {
+                StartCoroutine(NextNode());
+                percent = 0;
+            }
         }
     }
 
     IEnumerator NextNode() 
     {
         nodeCur = nodeTar;
+        paused = true;
         yield return new WaitForSecondsRealtime(nodes[nodeCur].GetWait(backtracking));
-        percent = 0;
+        paused = false;
 
         if (!backtrack) 
         {
