@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    #region Singleton
+    public static GameManager instance;
+    private void Awake()
     {
-        
+        DontDestroyOnLoad(this);
+        if (instance == null)
+            instance = this;
+        else Destroy(gameObject);
+    }
+    #endregion
+    [SerializeField] List<Transform> players = new List<Transform>();
+    private void Start()
+    {
+        GetPlayers();
     }
 
-    // Update is called once per frame
-    void Update()
+    void GetPlayers()
     {
-        
+        GameObject[] temp = GameObject.FindGameObjectsWithTag("player");
+        foreach (GameObject player in temp) players.Add(player.transform);
     }
 }
