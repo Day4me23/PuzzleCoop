@@ -4,35 +4,56 @@ using UnityEngine;
 
 public class OrbHolderManager : MonoBehaviour
 {
-    private Orb firstOrb, secondOrb;
-
-    public void AddOrb(Orb orb) {
-        if(firstOrb == null) {
-            firstOrb = orb;
-        } else if (secondOrb == null) {
-            secondOrb = orb;
-        } else {
-            return;
+    private int firstOrb, secondOrb;
+    [SerializeField] private string firstOrbName, secondOrbName;
+    public bool AddOrb(Orb orb) {
+        if(firstOrb == -1) {
+            firstOrb = orb.orb_id;
+            firstOrbName = orb.orb_name;
+            ChangeMechanics();
+            return true;
+        } else if (secondOrb == -1) {
+            secondOrb = orb.orb_id;
+            secondOrbName = orb.orb_name;
+            ChangeMechanics();
+            return true;
         }
 
-        ChangeMechanics();
-
+        return false;
+        
     }
 
     public void RemoveOrb() {
         //throwing
     }
 
-    public Orb GetFirstOrb() {
+    public int GetFirstOrb() {
         return firstOrb;
     }
 
-    public Orb GetSecondOrb() {
+    public int GetSecondOrb() {
         return secondOrb;
     }
 
     private void ChangeMechanics() {
-        firstOrb.GetComponent<Orb>().InsertNewMechanic();
-        secondOrb.GetComponent<Orb>().InsertNewMechanic();
+        if(firstOrb != -1) {
+            OrbList.instance.orbMechanics[firstOrb].GetComponent<Orb>().InsertNewMechanic(gameObject.GetComponent<PlayerMovement>());
+        }
+            //firstOrb.GetComponent<Orb>().InsertNewMechanic(gameObject.GetComponent<PlayerMovement>());
+        if(secondOrb != -1) {
+            OrbList.instance.orbMechanics[secondOrb].GetComponent<Orb>().InsertNewMechanic(gameObject.GetComponent<PlayerMovement>());
+        }
+           // secondOrb.GetComponent<Orb>().InsertNewMechanic(gameObject.GetComponent<PlayerMovement>());
     }
+
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Orb")) {
+            if (AddOrb(other.GetComponent<Orb>())){ //if you can add the orb
+                //you added the orb
+                Destroy(other.gameObject);
+            }
+        }
+    }
+
 }
