@@ -44,10 +44,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate() {
         if (canMove) {
-               // isGrounded = controller.isGrounded;
-                isGrounded = groundCheckObject.GetComponent<GroundCheck>().CheckGround(groundCheckObject.position, 0.4f, playerLayer);
+            //isGrounded = controller.isGrounded;
+            isGrounded = groundCheckObject.GetComponent<GroundCheck>().CheckGround(groundCheckObject.position, 0.2f, playerLayer);
 
-            if (isGrounded && velocity.y < 0f) { //if player is on the ground
+            if (isGrounded && velocity.y < 0f && !flipped) { //if player is on the ground
+                velocity.y = 0f;
+            } else if(isGrounded && velocity.y > 0f && flipped) {
                 velocity.y = 0f;
             }
 

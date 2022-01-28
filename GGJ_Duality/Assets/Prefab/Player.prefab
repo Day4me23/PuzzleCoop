@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2365642330683952267}
   - component: {fileID: 8081821155009905302}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8666685400127911820}
-  m_LocalRotation: {x: 3.5080213e-12, y: 0.00000078680506, z: 0.000004458561, w: 1}
+  m_LocalRotation: {x: -5.777907e-12, y: -0.00000078680506, z: -0.0000073435017, w: -1}
   m_LocalPosition: {x: -26.39, y: 0.9410808, z: 13.251278}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -112,7 +112,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   speed: 3
   canMove: 1
-  currentCheckpoint: 0
+  currentCheckpoint: {fileID: 0}
   orbHolder: {fileID: 0}
   velocity: {x: 0, y: -1, z: 0}
   jumped: 0
@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 8666685401120834205}
   - component: {fileID: 8666685401120834200}
   - component: {fileID: 8666685401120834203}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 8666685401835595093}
   - component: {fileID: 8666685401835595091}
   - component: {fileID: 5506769339595338473}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
