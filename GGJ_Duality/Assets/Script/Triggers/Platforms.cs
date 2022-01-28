@@ -6,7 +6,6 @@ public class Platforms : Triggerable
 {
     [Header("Platform")]
     [SerializeField] bool backtrack = false;
-
     [SerializeField] List<node> nodes = new List<node>();
 
     float percent = 0f;
@@ -34,6 +33,8 @@ public class Platforms : Triggerable
     {
         nodeCur = nodeTar;
         yield return new WaitForSecondsRealtime(nodes[nodeCur].GetWait(backtracking));
+        percent = 0;
+
         if (!backtrack) 
         {
             if (nodeTar == nodes.Count - 1)
@@ -58,7 +59,6 @@ public class Platforms : Triggerable
                 else nodeTar++;
             }
         }
-        percent = 0;
     }
 
     private void OnTriggerEnter(Collider other)
