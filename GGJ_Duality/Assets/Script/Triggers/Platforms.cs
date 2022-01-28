@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using System;
 
 public class Platforms : Triggerable
 {
@@ -13,10 +15,14 @@ public class Platforms : Triggerable
     int nodeTar = 1;
     bool backtracking = false;
     bool paused = false;
-    [SerializeField] readonly float circut;
 
+    [Header("DO NOT TOUCH!!!")]
+    [SerializeField] float circut;
+
+    private void Start() => transform.position = nodes[0].pos;
     private void FixedUpdate() 
     {
+        circut = GetCircutTime();
         if (nodes.Count < 2)
         {
             Debug.LogError("Out of bounds, add mode nodes.");
@@ -33,6 +39,22 @@ public class Platforms : Triggerable
                 percent = 0;
             }
         }
+    }
+
+    float GetCircutTime()
+    {
+        float count = 0;
+        for (int i = 0; i < nodes.Count; i++)
+        {
+            count += 1 / nodes[i].GetSpeed(backtrack);
+            count += nodes[i].GetWait(backtrack);
+            if (backtrack)
+            {
+                count += 1 / nodes[i].GetSpeed(!backtrack);
+                count += nodes[i].GetWait(!backtrack);
+            }
+        }
+        return count;
     }
 
     IEnumerator NextNode() 
@@ -83,7 +105,8 @@ public class Platforms : Triggerable
 public struct node
 {
     public Vector3 pos;
-    [Range(0,2)][SerializeField] float speedMain, speedBack, waitMain, WaitBack;
+    [Range(0, 2)] [SerializeField] float speedMain, speedBack;
+    [Range(0, 10)][SerializeField] float waitMain, WaitBack;
     public float GetSpeed(bool backtracking)
     {
         if (!backtracking) return speedMain;
