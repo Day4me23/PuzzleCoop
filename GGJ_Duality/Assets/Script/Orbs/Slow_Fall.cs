@@ -8,14 +8,14 @@ public class Slow_Fall : Orb
     //Player should fall slower
     public override void InsertNewMechanic(PlayerMovement player) {
 
-        player.DecreaseFallingSpeed();
+        player.SlowFall();
 
     }
 
     public override void RemoveThisMechanic(PlayerMovement player) {
 
 
-        player.IncreaseFallingSpeed();
+        player.NormalFall();
 
     }
 
