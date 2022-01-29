@@ -93,7 +93,7 @@ SphereCollider:
   m_GameObject: {fileID: 6442590769807509593}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -127,3 +127,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orb_name: Super Speed
   orb_id: 2
+  myPedestal: {fileID: 0}
+  thrown: 0
