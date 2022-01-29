@@ -121,12 +121,12 @@ public class Node
 {
     public Vector3 pos;
     [Header("Main")]
-    [Range(0, 2)] public float timeMain;
-    [Range(0, 10)] public float waitMain;
+    [Range(0, 20)] public float timeMain;
+    [Range(0, 20)] public float waitMain;
     [SerializeField] public float speedMain;
     [Header("Back")]
-    [Range(0, 2)] public float timeBack;
-    [Range(0, 10)] public float waitBack;
+    [Range(0, 20)] public float timeBack;
+    [Range(0, 20)] public float waitBack;
     [SerializeField] public float speedBack;
     public float GetSpeed(bool backtracking)
     {
@@ -143,59 +143,12 @@ public class Node
 [System.Serializable]
 public class PlatformsEditor : Editor
 {
-    bool fold;
-    List<bool> folds = new List<bool>();
     public override void OnInspectorGUI()
     {
         // add triggers
+        base.OnInspectorGUI();
 
         Platform platform = (Platform)target;
         EditorGUILayout.LabelField("CIRCUT TIME " + platform.GetCircutTime() + " SECONDS", EditorStyles.boldLabel);
-
-        platform.active = EditorGUILayout.Toggle("Active", platform.active);
-        platform.backtrack = EditorGUILayout.Toggle("Backtrack", platform.backtrack);
-
-        List<Node> list = platform.nodes;
-
-        EditorGUILayout.BeginHorizontal();
-        fold = EditorGUILayout.Foldout(fold, "Nodes", true);
-        int size = Mathf.Max(0, EditorGUILayout.IntField(list.Count));
-        EditorGUILayout.EndHorizontal();
-
-        while (size > list.Count)
-        {
-            folds.Add(false);
-            list.Add(null);
-        } 
-        while (size < platform.nodes.Count)
-        {
-            platform.nodes.RemoveAt(list.Count - 1);
-            folds.RemoveAt(list.Count - 1);
-        }
-        if (fold)
-        {
-            for (int i = 0; i < list.Count; i++)
-            {
-                EditorGUI.indentLevel++;
-                EditorGUILayout.LabelField("Node - " + i);
-
-                platform.nodes[i].pos = EditorGUILayout.Vector3Field("POS", platform.nodes[i].pos);
-                EditorGUILayout.Space();
-
-                list[i].timeMain = EditorGUILayout.FloatField("Time Main", list[i].timeMain);
-                list[i].waitMain = EditorGUILayout.FloatField("Wait Main", list[i].waitMain);
-                EditorGUILayout.LabelField("Speed: " + list[i].speedMain);
-
-                if (platform.backtrack)
-                {
-                    EditorGUILayout.Space();
-                    list[i].timeBack = EditorGUILayout.FloatField("Time Back", list[i].timeBack);
-                    list[i].waitBack = EditorGUILayout.FloatField("Wait Back", list[i].waitBack);
-                    EditorGUILayout.LabelField("Speed: " + list[i].speedBack);
-                }
-                EditorGUILayout.Space();
-                EditorGUI.indentLevel--;
-            }
-        }
     }
 }

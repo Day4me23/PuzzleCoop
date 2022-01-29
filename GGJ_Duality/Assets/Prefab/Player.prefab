@@ -70,7 +70,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8666685400127911820}
-  m_LocalRotation: {x: -6.6033195e-12, y: -0.00000078680506, z: -0.0000083925715, w: -1}
+  m_LocalRotation: {x: -0.00000078680506, y: 6.6377116e-12, z: -1, w: 0.000008436283}
   m_LocalPosition: {x: -26.39, y: 0.9410808, z: 13.251278}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -110,10 +110,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd576cbf7a48b345a314c41255a480a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  speed: 3
-  canMove: 1
   currentCheckpoint: {fileID: 0}
+  oppositePlayer: {fileID: 0}
+  controller: {fileID: 0}
+  canMove: 1
+  speed: 3
+  gravity: 9.81
+  fallSpeed: 0
+  flipped: 1
   orbHolder: {fileID: 2079309432581230848}
   velocity: {x: 0, y: -1, z: 0}
   jumped: 0
@@ -127,9 +131,6 @@ MonoBehaviour:
   groundCheckObject: {fileID: 2365642330683952267}
   groundDistance: 0.2
   jumpHeight: 2
-  gravity: -9.81
-  fallSpeed: 0
-  flipped: 0
 --- !u!114 &8666685400127911816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,10 +222,10 @@ MonoBehaviour:
     m_ActionName: PlayerControls/CameraY[/Mouse/delta/y,/XInputControllerWindows/rightStick/y]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8666685400127911819}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: ChangeGravity
-        m_Mode: 1
+      - m_Target: {fileID: 2079309432581230848}
+        m_TargetAssemblyTypeName: OrbHolderManager, Assembly-CSharp
+        m_MethodName: ThrowLeftContext
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -235,6 +236,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8c74f675-06a1-446f-bb96-45a12e74045a
     m_ActionName: PlayerControls/TEST[/Keyboard/u]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2079309432581230848}
+        m_TargetAssemblyTypeName: OrbHolderManager, Assembly-CSharp
+        m_MethodName: ThrowRightContext
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 43f3b804-bdf9-475d-b118-0f9cc1fd5a90
+    m_ActionName: PlayerControls/ThrowRIght[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerControls
@@ -254,6 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstOrbName: 
   secondOrbName: 
+  throwOrigin: {fileID: 6085843637931967129}
 --- !u!1 &8666685401120834204
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +382,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.7, z: 0.138}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 6085843637931967129}
   m_Father: {fileID: 8666685400127911818}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -456,3 +475,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivity: 1
+--- !u!1 &8898060431501116872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6085843637931967129}
+  m_Layer: 0
+  m_Name: ThrowOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6085843637931967129
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898060431501116872}
+  m_LocalRotation: {x: 6.6033195e-12, y: 0.00000078680506, z: 0.0000083925715, w: -1}
+  m_LocalPosition: {x: -0, y: -0.636, z: 1.152}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8666685401835595090}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

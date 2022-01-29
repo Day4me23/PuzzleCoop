@@ -16,7 +16,7 @@ public class Slow_Fall : Orb
 
 
         player.NormalFall();
-
+        player.oppositePlayer.NormalFall();
     }
 
 }
