@@ -7,8 +7,6 @@ public class CameraMovement : MonoBehaviour {
     public float sensitivity;
     private float xRotation = 0f;
     float x, y;
-
-
     private void Start() {
         Cursor.lockState = CursorLockMode.Locked;
     }
