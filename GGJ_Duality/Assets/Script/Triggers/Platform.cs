@@ -12,9 +12,21 @@ public class Platform : Triggerable
     int nodeCur = 0;
     int nodeTar = 1;
     bool backtracking = false;
-    bool paused = false; 
+    bool paused = false;
+    float elapsedTime = 0;
 
-    private void Start() => transform.position = nodes[0].pos;
+    static string holder = "SMOKE WEED EVERYDAY";
+
+    private void Start() 
+    {
+        if (GameObject.Find(holder) == null)
+        {
+            GameObject temp = new GameObject(holder);
+            temp.transform.position = Vector3.zero;
+        }
+
+        transform.position = nodes[0].pos; 
+    }
     private void FixedUpdate() 
     {
         if (nodes.Count < 2)
@@ -25,10 +37,16 @@ public class Platform : Triggerable
 
         if (active)
         {
-            if (!paused) percent += nodes[nodeCur].GetSpeed(backtracking) * Time.deltaTime;
+            //if (!paused) percent += nodes[nodeCur].GetSpeed(backtracking) * Time.deltaTime;
+            if (!paused)
+            {
+                elapsedTime += Time.deltaTime;
+                percent = elapsedTime / nodes[nodeCur].GetSpeed(backtracking);
+            }
             transform.position = Vector3.Lerp(nodes[nodeCur].pos, nodes[nodeTar].pos, percent);
             if (percent >= 1f)
             {
+                elapsedTime = 0;
                 StartCoroutine(NextNode());
                 percent = 0;
             }
@@ -40,11 +58,11 @@ public class Platform : Triggerable
         float count = 0;
         for (int i = 0; i < nodes.Count; i++)
         {
-            count += 1 / nodes[i].GetSpeed(backtrack);
+            count += nodes[i].GetSpeed(backtrack);
             count += nodes[i].GetWait(backtrack);
             if (backtrack)
             {
-                count += 1 / nodes[i].GetSpeed(!backtrack);
+                count += nodes[i].GetSpeed(!backtrack);
                 count += nodes[i].GetWait(!backtrack);
             }
         }
@@ -95,7 +113,7 @@ public class Platform : Triggerable
     private void OnTriggerExit(Collider other)
     {
         if (other.transform.GetComponent<Player>())
-            other.transform.parent = GameObject.Find("Env").transform;
+            other.transform.parent = GameObject.Find(holder).transform;
     }
 }
 [System.Serializable]
@@ -122,48 +140,62 @@ public class Node
     }
 }
 [CustomEditor(typeof(Platform))]
+[System.Serializable]
 public class PlatformsEditor : Editor
 {
+    bool fold;
+    List<bool> folds = new List<bool>();
     public override void OnInspectorGUI()
     {
         // add triggers
-        // bold thing
-        // foldouts
-
-
 
         Platform platform = (Platform)target;
-        EditorGUILayout.LabelField("CIRCUT TIME " + platform.GetCircutTime() + " SECONDS");
+        EditorGUILayout.LabelField("CIRCUT TIME " + platform.GetCircutTime() + " SECONDS", EditorStyles.boldLabel);
+
+        platform.active = EditorGUILayout.Toggle("Active", platform.active);
         platform.backtrack = EditorGUILayout.Toggle("Backtrack", platform.backtrack);
 
         List<Node> list = platform.nodes;
-        int size = Mathf.Max(0, EditorGUILayout.IntField("Node Count", list.Count));
+
+        EditorGUILayout.BeginHorizontal();
+        fold = EditorGUILayout.Foldout(fold, "Nodes", true);
+        int size = Mathf.Max(0, EditorGUILayout.IntField(list.Count));
+        EditorGUILayout.EndHorizontal();
+
         while (size > list.Count)
-            list.Add(null);
-        while (size < platform.nodes.Count)
-            platform.nodes.RemoveAt(list.Count - 1);
-        for (int i = 0; i < list.Count; i++)
         {
-            EditorGUILayout.LabelField("Node " + i);
-            EditorGUI.indentLevel++;
-
-            platform.nodes[i].pos = EditorGUILayout.Vector3Field("POS",platform.nodes[i].pos);
-            EditorGUILayout.Space();
-
-            list[i].timeMain = EditorGUILayout.FloatField("Time Main", list[i].timeMain);
-            list[i].waitMain = EditorGUILayout.FloatField("Time Main", list[i].waitMain);
-            EditorGUILayout.LabelField("Speed: " + list[i].speedMain);
-
-            if (platform.backtrack)
+            folds.Add(false);
+            list.Add(null);
+        } 
+        while (size < platform.nodes.Count)
+        {
+            platform.nodes.RemoveAt(list.Count - 1);
+            folds.RemoveAt(list.Count - 1);
+        }
+        if (fold)
+        {
+            for (int i = 0; i < list.Count; i++)
             {
-                EditorGUILayout.Space();
-                list[i].timeBack = EditorGUILayout.FloatField("Time Back", list[i].timeBack);
-                list[i].waitBack = EditorGUILayout.FloatField("Time Back", list[i].waitBack);
-                EditorGUILayout.LabelField("Speed: " + list[i].speedBack);
-            }
+                EditorGUI.indentLevel++;
+                EditorGUILayout.LabelField("Node - " + i);
 
-            EditorGUILayout.Space();
-            EditorGUI.indentLevel--;
+                platform.nodes[i].pos = EditorGUILayout.Vector3Field("POS", platform.nodes[i].pos);
+                EditorGUILayout.Space();
+
+                list[i].timeMain = EditorGUILayout.FloatField("Time Main", list[i].timeMain);
+                list[i].waitMain = EditorGUILayout.FloatField("Wait Main", list[i].waitMain);
+                EditorGUILayout.LabelField("Speed: " + list[i].speedMain);
+
+                if (platform.backtrack)
+                {
+                    EditorGUILayout.Space();
+                    list[i].timeBack = EditorGUILayout.FloatField("Time Back", list[i].timeBack);
+                    list[i].waitBack = EditorGUILayout.FloatField("Wait Back", list[i].waitBack);
+                    EditorGUILayout.LabelField("Speed: " + list[i].speedBack);
+                }
+                EditorGUILayout.Space();
+                EditorGUI.indentLevel--;
+            }
         }
     }
 }
