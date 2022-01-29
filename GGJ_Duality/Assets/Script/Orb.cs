@@ -36,7 +36,7 @@ public class Orb : MonoBehaviour
             //if this hits anything but a player or trigger 
             
         } else {
-            DeleteOrb();
+            return;
         }
     }
 
