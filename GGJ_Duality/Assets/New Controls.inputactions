@@ -38,9 +38,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "TEST",
+                    "name": "ThrowLeft",
                     "type": "Button",
                     "id": "8c74f675-06a1-446f-bb96-45a12e74045a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ThrowRIght",
+                    "type": "Button",
+                    "id": "43f3b804-bdf9-475d-b118-0f9cc1fd5a90",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -182,11 +190,22 @@
                 {
                     "name": "",
                     "id": "b7712821-9f8b-4e86-99fd-ecbe7f8ecb16",
-                    "path": "<Keyboard>/u",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TEST",
+                    "action": "ThrowLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fbe16c2e-8d0a-4311-bea3-5dd8e369c4d5",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ThrowRIght",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
