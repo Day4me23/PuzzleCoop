@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Button : Interactable
 {
-    public override void Interact()
+    public override void Interact(GameObject obj)
     {
         
     }

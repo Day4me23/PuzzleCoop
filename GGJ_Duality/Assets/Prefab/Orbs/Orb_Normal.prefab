@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3979380048065455218
+--- !u!1 &110106211840007515
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3979380048065455212}
-  - component: {fileID: 3979380048065455215}
-  - component: {fileID: 3979380048065455214}
-  - component: {fileID: 3979380048065455217}
-  - component: {fileID: 3979380048065455216}
-  - component: {fileID: 3979380048065455219}
+  - component: {fileID: 110106211840007517}
+  - component: {fileID: 110106211840007516}
+  - component: {fileID: 110106211840007519}
+  - component: {fileID: 110106211840007518}
+  - component: {fileID: 110106211840007513}
+  - component: {fileID: 4009163593632851964}
   m_Layer: 0
-  m_Name: Orb_SlowFall
+  m_Name: Orb_Normal
   m_TagString: Orb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3979380048065455212
+--- !u!4 &110106211840007517
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3979380048065455218}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.41, y: -2.213707, z: 7.34}
+  m_GameObject: {fileID: 110106211840007515}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3979380048065455215
+--- !u!33 &110106211840007516
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3979380048065455218}
+  m_GameObject: {fileID: 110106211840007515}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &3979380048065455214
+--- !u!23 &110106211840007519
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3979380048065455218}
+  m_GameObject: {fileID: 110106211840007515}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,43 +84,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &3979380048065455217
+--- !u!135 &110106211840007518
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3979380048065455218}
+  m_GameObject: {fileID: 110106211840007515}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3979380048065455216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3979380048065455218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d642eb6948fa3041b0f7d7c191fa6cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orb_name: Slow Fall
-  orb_id: 1
-  orb_pedestalID: 0
-  myPedestal: {fileID: 0}
-  thrown: 0
---- !u!54 &3979380048065455219
+--- !u!54 &110106211840007513
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3979380048065455218}
+  m_GameObject: {fileID: 110106211840007515}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -130,3 +113,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4009163593632851964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110106211840007515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7443aa8a43e169428673a71731b3f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orb_name: Normal
+  orb_id: 3
+  orb_pedestalID: 0
+  myPedestal: {fileID: 0}
+  thrown: 0
