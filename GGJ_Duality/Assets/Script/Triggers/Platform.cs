@@ -2,22 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using System;
 
-public class Platforms : Triggerable
+public class Platform : Triggerable
 {
-    [Header("Platform")]
     [SerializeField] bool backtrack = false;
-    [SerializeField] List<node> nodes = new List<node>();
+    [SerializeField] float circut;
+    [SerializeField] List<Node> nodes = new List<Node>();
 
     float percent = 0f;
     int nodeCur = 0;
     int nodeTar = 1;
     bool backtracking = false;
-    bool paused = false;
-
-    [Header("DO NOT TOUCH!!!")]
-    [SerializeField] float circut;
+    bool paused = false; 
 
     private void Start() => transform.position = nodes[0].pos;
     private void FixedUpdate() 
@@ -75,19 +71,22 @@ public class Platforms : Triggerable
             if (nodeTar == 0 || nodeTar == nodes.Count - 1)
                 backtracking = !backtracking;
 
-            if (backtracking) 
+            if (backtracking)
             {
                 if (nodeTar == 0)
                     nodeTar = nodeTar + 1;
                 else nodeTar--;
             }
-            else 
+            else
             {
                 if (nodeTar == nodes.Count - 1)
                     nodeTar = nodes.Count - 2;
                 else nodeTar++;
             }
         }
+        if (backtrack && backtracking)
+                nodes[nodeCur].speedBack = Vector3.Distance(nodes[nodeCur].pos, nodes[nodeTar].pos) / (1 / nodes[nodeCur].GetSpeed(true));
+        else nodes[nodeCur].speedMain = Vector3.Distance(nodes[nodeCur].pos, nodes[nodeTar].pos) / (1 / nodes[nodeCur].GetSpeed(false));
     }
 
     private void OnTriggerEnter(Collider other)
@@ -102,19 +101,34 @@ public class Platforms : Triggerable
     }
 }
 [System.Serializable]
-public struct node
+public class Node
 {
     public Vector3 pos;
-    [Range(0, 2)] [SerializeField] float speedMain, speedBack;
-    [Range(0, 10)][SerializeField] float waitMain, WaitBack;
+    [Header("Main")]
+    [Range(0, 2)] [SerializeField] float timeMain;
+    [Range(0, 10)] [SerializeField] float waitMain;
+    [SerializeField] public float speedMain;
+    [Header("Back")]
+    [Range(0, 2)] [SerializeField] float timeBack;
+    [Range(0, 10)] [SerializeField] float WaitBack;
+    [SerializeField] public float speedBack;
     public float GetSpeed(bool backtracking)
     {
-        if (!backtracking) return speedMain;
-        return speedBack;
+        if (!backtracking) return timeMain;
+        return timeBack;
     }
     public float GetWait(bool backtracking)
     {
         if (!backtracking) return waitMain;
         return WaitBack;
+    }
+}
+[CustomEditor(typeof(Platform))]
+public class PlatformsEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        Platform platform = (Platform)target;
     }
 }
