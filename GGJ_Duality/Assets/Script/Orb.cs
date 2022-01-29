@@ -6,6 +6,10 @@ public class Orb : MonoBehaviour
 {
     public string orb_name;
     public int orb_id; //for the list of orbs
+    public int orb_pedestalID;
+
+    public Pedestal myPedestal;
+    public bool thrown; //if this orb was thrown
     public virtual void InsertNewMechanic(PlayerMovement player) {
 
     }
@@ -14,19 +18,34 @@ public class Orb : MonoBehaviour
 
     }
 
+    public void TurnOnCollider() {
+        GetComponent<Collider>().enabled = true;
+    }
+
+
     private void OnTriggerEnter(Collider other) {
         if (!other.CompareTag("Player")) {
             if(other.GetComponent<BoxCollider>() != null) {
                 if (!other.GetComponent<BoxCollider>().isTrigger) {
-                    Destroy(this.gameObject);
+                    DeleteOrb();
                 }
             } else {
-                Destroy(this.gameObject);
+                DeleteOrb();
             }
+
             //if this hits anything but a player or trigger 
             
         } else {
-            Destroy(this.gameObject);
+            return;
         }
+    }
+
+    private void DeleteOrb() {
+        if (thrown) {
+            PedestalManager.instance.FindPedestal(orb_pedestalID, orb_id);
+            //myPedestal.SpawnOrb(orb_id);
+        }
+        
+        Destroy(this.gameObject);
     }
 }
