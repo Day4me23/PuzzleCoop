@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Triggerable : MonoBehaviour {
-    [Header("Triggerable Variables")]
+public class Triggerable : MonoBehaviour 
+{
     [SerializeField] List<Trigger> triggers;
     public bool active;
    /* private void Update() {
