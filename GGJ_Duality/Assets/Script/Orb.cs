@@ -24,6 +24,21 @@ public class Orb : MonoBehaviour
 
 
     private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Player")) {
+            return;
+        } else if (other.CompareTag("KeyHole")) {
+            other.GetComponent<KeyHole>().Interact(this.gameObject);
+        } else {
+            if (other.GetComponent<BoxCollider>() != null) {
+                if (!other.GetComponent<BoxCollider>().isTrigger) {
+                    DeleteOrb();
+                }
+            }
+            else {
+                DeleteOrb();
+            }
+        }
+        /*
         if (!other.CompareTag("Player")) {
             if(other.GetComponent<BoxCollider>() != null) {
                 if (!other.GetComponent<BoxCollider>().isTrigger) {
@@ -37,7 +52,7 @@ public class Orb : MonoBehaviour
             
         } else {
             return;
-        }
+        } */
     }
 
     private void DeleteOrb() {

@@ -13,7 +13,7 @@ public class Interact : MonoBehaviour {
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range)) {
             if (hit.transform.GetComponent<Interactable>() == null) return;
             hit.transform.GetComponent<Interactable>().Overview();
-            if (Input.GetKeyDown(KeyCode.E)) hit.transform.GetComponent<Interactable>().Interact();
+            //if (Input.GetKeyDown(KeyCode.E)) hit.transform.GetComponent<Interactable>().Interact();
         }
     }
 }

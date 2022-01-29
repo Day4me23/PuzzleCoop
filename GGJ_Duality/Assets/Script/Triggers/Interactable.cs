@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Interactable : Trigger {
-    public virtual void Interact() {
+    public virtual void Interact(GameObject obj) {
         Debug.Log("Interacting with: " + this);
         source.CheckIfActive();
     }
