@@ -13,7 +13,8 @@ public class Platform : Triggerable
     int nodeCur = 0;
     int nodeTar = 1;
     bool backtracking = false;
-    bool paused = false; 
+    bool paused = false;
+    float elapsedTime = 0;
 
     private void Start() => transform.position = nodes[0].pos;
     private void FixedUpdate() 
@@ -27,10 +28,16 @@ public class Platform : Triggerable
 
         if (active)
         {
-            if (!paused) percent += nodes[nodeCur].GetSpeed(backtracking) * Time.deltaTime;
+            //if (!paused) percent += nodes[nodeCur].GetSpeed(backtracking) * Time.deltaTime;
+            if (!paused)
+            {
+                elapsedTime += Time.deltaTime;
+                percent = elapsedTime / nodes[nodeCur].GetSpeed(backtracking);
+            }
             transform.position = Vector3.Lerp(nodes[nodeCur].pos, nodes[nodeTar].pos, percent);
             if (percent >= 1f)
             {
+                elapsedTime = 0;
                 StartCoroutine(NextNode());
                 percent = 0;
             }
@@ -42,11 +49,11 @@ public class Platform : Triggerable
         float count = 0;
         for (int i = 0; i < nodes.Count; i++)
         {
-            count += 1 / nodes[i].GetSpeed(backtrack);
+            count += nodes[i].GetSpeed(backtrack);
             count += nodes[i].GetWait(backtrack);
             if (backtrack)
             {
-                count += 1 / nodes[i].GetSpeed(!backtrack);
+                count += nodes[i].GetSpeed(!backtrack);
                 count += nodes[i].GetWait(!backtrack);
             }
         }
@@ -105,11 +112,11 @@ public class Node
 {
     public Vector3 pos;
     [Header("Main")]
-    [Range(0, 2)] [SerializeField] float timeMain;
+    [Range(0, 10)] [SerializeField] float timeMain;
     [Range(0, 10)] [SerializeField] float waitMain;
     [SerializeField] public float speedMain;
     [Header("Back")]
-    [Range(0, 2)] [SerializeField] float timeBack;
+    [Range(0, 10)] [SerializeField] float timeBack;
     [Range(0, 10)] [SerializeField] float WaitBack;
     [SerializeField] public float speedBack;
     public float GetSpeed(bool backtracking)
