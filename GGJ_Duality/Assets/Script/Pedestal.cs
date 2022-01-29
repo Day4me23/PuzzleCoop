@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pedestal : Interactable
+public class Pedestal : MonoBehaviour
 {
-    [SerializeField] GameObject orb;
-    private void Update()
-    {
-        if (orb == null)
-        {
+    [SerializeField] GameObject orbPrefab;
+    [SerializeField] Vector3 offset;
+    GameObject reference;
 
-        }
+    private void FixedUpdate()
+    {
+        if (reference == null)
+            reference = Instantiate(orbPrefab, offset, Quaternion.identity);
     }
 }
