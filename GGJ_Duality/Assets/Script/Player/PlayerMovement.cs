@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour {
         private float superFallSpeed = 2f;
         private float slowFallSpeed = 0.4f;
         private bool falling; //when switching gravity
+        public bool flipped;
     #endregion
 
     [Header("OrbManager")]
@@ -53,7 +54,7 @@ public class PlayerMovement : MonoBehaviour {
     private float defaultJumpHeight;
     private float superJumpHeight;
     
-    [SerializeField] private bool flipped;
+    
     private void Awake() {
         controller = GetComponent<CharacterController>();
 
@@ -152,7 +153,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public void NormalSpeed() {
         speed = defaultSpeed;
-        oppositePlayer.NormalSpeed();
+        //oppositePlayer.NormalSpeed();
     }
     #endregion
     #region FALLING MECHANIC
@@ -168,7 +169,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public void NormalFall() {
         fallSpeed = defaultFallSpeed;
-        oppositePlayer.NormalFall();
+        //oppositePlayer.NormalFall();
     }
     #endregion
 

@@ -4,8 +4,26 @@ ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
+      74: 425595578786358256
+    second: rig|End Jump
+  - first:
+      74: -2864923421055855918
+    second: rig|End Move Forward
+  - first:
       74: -7361427651036151181
     second: rig|Idle
+  - first:
+      74: -512320013847864616
+    second: rig|Jump
+  - first:
+      74: -638164199244378794
+    second: rig|Move Forward
+  - first:
+      74: -3231945572784374738
+    second: rig|Start Jump
+  - first:
+      74: 7991077480833791512
+    second: rig|Start Move Forward
   externalObjects: {}
   materials:
     materialImportMode: 2

@@ -16,7 +16,7 @@ public class Super_Speed : Orb
 
 
         player.NormalSpeed();
-
+        player.oppositePlayer.NormalSpeed();
     }
 
 }

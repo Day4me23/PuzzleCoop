@@ -6,16 +6,18 @@ public class Anti_Gravity : Orb
 {
     //Flip the gravity
     public override void InsertNewMechanic(PlayerMovement player) {
-
-        player.ChangeGravity();
+        if (!player.flipped) {
+            player.ChangeGravity();
+        }
+        
 
     }
 
     public override void RemoveThisMechanic(PlayerMovement player) {
 
-
-        player.ChangeGravity();
-
+        if (player.flipped) {
+            player.ChangeGravity();
+        }
     }
 
 
