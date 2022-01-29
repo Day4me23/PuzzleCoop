@@ -121,12 +121,12 @@ public class Node
 {
     public Vector3 pos;
     [Header("Main")]
-    [Range(0, 2)] public float timeMain;
-    [Range(0, 10)] public float waitMain;
+    [Range(0, 20)] public float timeMain;
+    [Range(0, 20)] public float waitMain;
     [SerializeField] public float speedMain;
     [Header("Back")]
-    [Range(0, 2)] public float timeBack;
-    [Range(0, 10)] public float waitBack;
+    [Range(0, 20)] public float timeBack;
+    [Range(0, 20)] public float waitBack;
     [SerializeField] public float speedBack;
     public float GetSpeed(bool backtracking)
     {
