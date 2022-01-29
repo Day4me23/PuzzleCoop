@@ -107,12 +107,12 @@ public class Platform : Triggerable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.GetComponent<Player>())
+        if (other.transform.GetComponent<PlayerMovement>())
             other.transform.parent = transform;
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.transform.GetComponent<Player>())
+        if (other.transform.GetComponent<PlayerMovement>())
             other.transform.parent = GameObject.Find(holder).transform;
     }
 }
