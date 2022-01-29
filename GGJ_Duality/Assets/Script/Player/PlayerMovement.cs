@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (canMove) {
+        if (GameManager.instance.levelHasStarted) {
             //isGrounded = controller.isGrounded;
             isGrounded = groundCheckObject.GetComponent<GroundCheck>().CheckGround(groundCheckObject.position, 0.2f, playerLayer);
 

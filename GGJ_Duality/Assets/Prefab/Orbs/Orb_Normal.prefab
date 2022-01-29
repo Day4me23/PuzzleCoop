@@ -125,8 +125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7443aa8a43e169428673a71731b3f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orb_name: Normal
+  orb_name: NORMAL
   orb_id: 3
   orb_pedestalID: 0
+  orbColor:
+    serializedVersion: 2
+    rgba: 4294967295
   myPedestal: {fileID: 0}
   thrown: 0
