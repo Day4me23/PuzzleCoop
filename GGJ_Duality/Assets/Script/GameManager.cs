@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI player_two_leftText;
     [SerializeField] private TextMeshProUGUI player_two_rightText;
 
+    [SerializeField] private GameObject playerOneModel;
+    [SerializeField] private GameObject playerTwoModel;
+
     public bool levelHasStarted;
     #region Singleton
     public static GameManager instance;
@@ -68,7 +71,16 @@ public class GameManager : MonoBehaviour
 
             players[0].GetComponent<PlayerMovement>().oppositePlayer = players[1].GetComponent<PlayerMovement>();
             players[1].GetComponent<PlayerMovement>().oppositePlayer = players[0].GetComponent<PlayerMovement>();
-            
+            GameObject model_1 = Instantiate(playerOneModel, players[0].GetComponent<PlayerMovement>().model.position, Quaternion.identity);
+            model_1.transform.parent = players[0].GetComponent<PlayerMovement>().model;
+            model_1.transform.localPosition = Vector3.zero;
+            model_1.transform.localRotation = Quaternion.Euler(0, 0, 0);
+
+            GameObject model_2 = Instantiate(playerTwoModel, players[1].GetComponent<PlayerMovement>().model.position, Quaternion.identity);
+            model_2.transform.parent = players[1].GetComponent<PlayerMovement>().model;
+            model_2.transform.localPosition = Vector3.zero;
+            model_2.transform.localRotation = Quaternion.Euler(0, 0, 0);
+
             waitingScreen.SetActive(false);
             StartLevel();
         } else {
