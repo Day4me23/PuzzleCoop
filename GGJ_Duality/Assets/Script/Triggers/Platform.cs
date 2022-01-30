@@ -140,6 +140,7 @@ public class Node
         return waitBack;
     }
 }
+#if UNITY_EDITOR
 [CustomEditor(typeof(Platform))]
 [System.Serializable]
 public class PlatformsEditor : Editor
@@ -153,3 +154,4 @@ public class PlatformsEditor : Editor
         EditorGUILayout.LabelField("CIRCUT TIME " + platform.GetCircutTime() + " SECONDS", EditorStyles.boldLabel);
     }
 }
+#endif
