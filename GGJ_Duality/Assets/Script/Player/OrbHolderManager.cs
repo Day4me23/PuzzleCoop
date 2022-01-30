@@ -5,10 +5,10 @@ using UnityEngine.InputSystem;
 public class OrbHolderManager : MonoBehaviour
 {
     //private int firstOrb = -1, secondOrb = -1;
-    private int firstOrb = -1;
-    private int secondOrb = -1;
+    public int firstOrb = -1;
+    public int secondOrb = -1;
 
-    [SerializeField] private string firstOrbName, secondOrbName;
+    public string firstOrbName, secondOrbName;
 
     [SerializeField] private int firstOrbPedestal, secondOrbPedestal;
 
@@ -93,6 +93,9 @@ public class OrbHolderManager : MonoBehaviour
         if(secondOrb != -1) {
             OrbList.instance.orbMechanics[secondOrb].GetComponent<Orb>().InsertNewMechanic(gameObject.GetComponent<PlayerMovement>());
         }
+
+        GameManager.instance.UpdateUIOrbs();
+
     }
 
 

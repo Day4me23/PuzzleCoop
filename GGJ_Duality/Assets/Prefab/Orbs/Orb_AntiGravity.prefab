@@ -109,9 +109,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28ee16ee87c82d4ca8813c6e48694a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orb_name: Anti Gravity
+  orb_name: ANTI GRAVITY
   orb_id: 0
   orb_pedestalID: 0
+  orbColor:
+    serializedVersion: 2
+    rgba: 4282383667
   myPedestal: {fileID: 0}
   thrown: 0
 --- !u!54 &4146025521033122632

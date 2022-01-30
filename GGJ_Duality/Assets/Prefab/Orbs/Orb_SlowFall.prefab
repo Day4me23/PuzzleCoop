@@ -109,9 +109,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d642eb6948fa3041b0f7d7c191fa6cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orb_name: Slow Fall
+  orb_name: SLOW FALL
   orb_id: 1
   orb_pedestalID: 0
+  orbColor:
+    serializedVersion: 2
+    rgba: 4294309209
   myPedestal: {fileID: 0}
   thrown: 0
 --- !u!54 &3979380048065455219

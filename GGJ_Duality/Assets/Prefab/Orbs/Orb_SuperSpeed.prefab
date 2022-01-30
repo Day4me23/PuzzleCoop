@@ -125,8 +125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 986094727d0a798459b85635475579e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orb_name: Super Speed
+  orb_name: SUPER SPEED
   orb_id: 2
   orb_pedestalID: 0
+  orbColor:
+    serializedVersion: 2
+    rgba: 4283980031
   myPedestal: {fileID: 0}
   thrown: 0
