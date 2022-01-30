@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aeee7071bea0a4c478b4fea5933c5f79, type: 2}
+  - {fileID: 2100000, guid: f3d2551c04662f24fae13fbfb98e7ff0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -125,8 +125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7443aa8a43e169428673a71731b3f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orb_name: Normal
+  orb_name: NORMAL
   orb_id: 3
   orb_pedestalID: 0
+  orbColor:
+    serializedVersion: 2
+    rgba: 4294967295
   myPedestal: {fileID: 0}
   thrown: 0

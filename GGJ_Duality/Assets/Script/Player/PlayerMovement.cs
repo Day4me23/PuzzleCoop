@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour {
     public PlayerMovement oppositePlayer; // <--- the other player in the game
     [SerializeField] private CharacterController controller;
     [SerializeField] private bool canMove; //determines if the player can move or not
-    
+    public Transform model;
 
     #region Speed Variables
         [SerializeField] private float speed; //movement speed
@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (canMove) {
+        if (GameManager.instance.levelHasStarted) {
             //isGrounded = controller.isGrounded;
             isGrounded = groundCheckObject.GetComponent<GroundCheck>().CheckGround(groundCheckObject.position, 0.2f, playerLayer);
 

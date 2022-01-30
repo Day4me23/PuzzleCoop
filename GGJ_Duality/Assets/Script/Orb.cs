@@ -6,8 +6,8 @@ public class Orb : MonoBehaviour
 {
     public string orb_name;
     public int orb_id; //for the list of orbs
-    public int orb_pedestalID;
-
+    public int orb_pedestalID; //to know which pedestal this orb belongs to
+    public Color32 orbColor; //for UI
     public Pedestal myPedestal;
     public bool thrown; //if this orb was thrown
     public virtual void InsertNewMechanic(PlayerMovement player) {

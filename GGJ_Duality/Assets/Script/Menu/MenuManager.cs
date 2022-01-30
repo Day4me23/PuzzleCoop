@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
+    
 
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject settingsMenu;
@@ -55,4 +57,9 @@ public class MenuManager : MonoBehaviour
         Debug.Log("Quitting Game...");
         Application.Quit();
     }
+
+    public void LoadLevel(int levelNum) {
+        SceneManager.LoadScene(levelNum);
+    }
+
 }
