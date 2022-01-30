@@ -68,7 +68,7 @@ public class OrbHolderManager : MonoBehaviour
 
     private void ThrowRight() {
         //holds the second orb with right click
-        if (firstOrb != -1) {
+        if (secondOrb != -1) {
             //you have an orb in the right hand
 
             GameObject orb = Instantiate(OrbList.instance.orbMechanics[secondOrb].gameObject, throwOrigin.position, Quaternion.identity);
