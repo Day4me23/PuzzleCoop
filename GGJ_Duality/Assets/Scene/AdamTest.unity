@@ -14801,6 +14801,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 689824741}
+    - target: {fileID: 2568820827519593859, guid: 5a900c58db63ecd4aa6bc4e40d18300a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 50c54bea640750b488bcd560418e693e, type: 2}
     - target: {fileID: 3216185946570700162, guid: 5a900c58db63ecd4aa6bc4e40d18300a, type: 3}
       propertyPath: m_Name
       value: SlowFall Pedestal
