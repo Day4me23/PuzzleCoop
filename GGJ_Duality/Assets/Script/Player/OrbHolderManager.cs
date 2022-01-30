@@ -5,21 +5,26 @@ using UnityEngine.InputSystem;
 public class OrbHolderManager : MonoBehaviour
 {
     //private int firstOrb = -1, secondOrb = -1;
-    private int firstOrb = -1;
-    private int secondOrb = -1;
+    public int firstOrb = -1;
+    public int secondOrb = -1;
 
-    [SerializeField] private string firstOrbName, secondOrbName;
+    public string firstOrbName, secondOrbName;
+
+    [SerializeField] private int firstOrbPedestal, secondOrbPedestal;
+
     [SerializeField] private Transform throwOrigin;
     private float throwForce = 5f;
     public bool AddOrb(Orb orb) {
         if(firstOrb == -1) {
             firstOrb = orb.orb_id;
             firstOrbName = orb.orb_name;
+            firstOrbPedestal = orb.orb_pedestalID;
             ChangeMechanics();
             return true;
         } else if (secondOrb == -1) {
             secondOrb = orb.orb_id;
             secondOrbName = orb.orb_name;
+            secondOrbPedestal = orb.orb_pedestalID;
             ChangeMechanics();
             return true;
         }
@@ -39,6 +44,10 @@ public class OrbHolderManager : MonoBehaviour
             //you have an orb in the left hand
 
             GameObject orb = Instantiate(OrbList.instance.orbMechanics[firstOrb].gameObject, throwOrigin.position, Quaternion.identity);
+            
+            orb.GetComponent<Orb>().TurnOnCollider();
+            orb.GetComponent<Orb>().orb_pedestalID = firstOrbPedestal;
+            orb.GetComponent<Orb>().thrown = true;
             orb.GetComponent<Rigidbody>().AddForce(throwOrigin.forward * throwForce, ForceMode.Impulse);
 
             OrbList.instance.orbMechanics[firstOrb].GetComponent<Orb>().RemoveThisMechanic(gameObject.GetComponent<PlayerMovement>());
@@ -63,6 +72,9 @@ public class OrbHolderManager : MonoBehaviour
             //you have an orb in the right hand
 
             GameObject orb = Instantiate(OrbList.instance.orbMechanics[secondOrb].gameObject, throwOrigin.position, Quaternion.identity);
+            orb.GetComponent<Orb>().TurnOnCollider();
+            orb.GetComponent<Orb>().orb_pedestalID = secondOrbPedestal;
+            orb.GetComponent<Orb>().thrown = true;
             orb.GetComponent<Rigidbody>().AddForce(throwOrigin.forward * throwForce, ForceMode.Impulse);
 
             OrbList.instance.orbMechanics[secondOrb].GetComponent<Orb>().RemoveThisMechanic(gameObject.GetComponent<PlayerMovement>());
@@ -81,6 +93,9 @@ public class OrbHolderManager : MonoBehaviour
         if(secondOrb != -1) {
             OrbList.instance.orbMechanics[secondOrb].GetComponent<Orb>().InsertNewMechanic(gameObject.GetComponent<PlayerMovement>());
         }
+
+        GameManager.instance.UpdateUIOrbs();
+
     }
 
 

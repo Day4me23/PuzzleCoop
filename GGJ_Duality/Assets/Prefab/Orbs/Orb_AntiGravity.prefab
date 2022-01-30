@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4146025521033122637}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.055623, y: -2.213707, z: 0.91535664}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aeee7071bea0a4c478b4fea5933c5f79, type: 2}
+  - {fileID: 2100000, guid: e2f5bd84ab67b784395a86848a608b2d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,7 +93,7 @@ SphereCollider:
   m_GameObject: {fileID: 4146025521033122637}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -109,8 +109,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28ee16ee87c82d4ca8813c6e48694a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orb_name: Anti Gravity
+  orb_name: ANTI GRAVITY
   orb_id: 0
+  orb_pedestalID: 0
+  orbColor:
+    serializedVersion: 2
+    rgba: 4282383667
+  myPedestal: {fileID: 0}
+  thrown: 0
 --- !u!54 &4146025521033122632
 Rigidbody:
   m_ObjectHideFlags: 0

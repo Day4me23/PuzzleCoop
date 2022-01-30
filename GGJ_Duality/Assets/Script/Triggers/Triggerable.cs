@@ -9,7 +9,7 @@ public class Triggerable : MonoBehaviour
 
     public bool CheckIfActive() {
         int count = 0;
-        for (int i = 0; i < triggers.Count - 1; i++) {
+        for (int i = 0; i < triggers.Count; i++) {
             if (triggers[i] != null) {
                 if (triggers[i].active) {
                     count++;

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Pedestal : MonoBehaviour
 {
-    [SerializeField] GameObject orbPrefab;
-    [SerializeField] Vector3 offset;
-    GameObject reference;
+    [SerializeField] Transform offset;
+    public int pedistalID;
+    public void SpawnOrb(int pedID, int orbID) {
 
-    private void FixedUpdate()
-    {
-        if (reference == null)
-            reference = Instantiate(orbPrefab, offset, Quaternion.identity);
+        GameObject orb = Instantiate(OrbList.instance.orbMechanics[orbID].gameObject, offset.position, Quaternion.identity);
+        orb.GetComponent<Orb>().TurnOnCollider();
+        orb.GetComponent<Orb>().orb_pedestalID = pedID;
     }
+
 }
