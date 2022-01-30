@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using TMPro;
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private Transform oneOrigin;
+    [SerializeField] private Transform twoOrigin;
 
     [SerializeField] private TextMeshProUGUI waitingText;
     [SerializeField] private GameObject waitingScreen;
@@ -43,6 +45,15 @@ public class GameManager : MonoBehaviour
 
 
     public void StartLevel() {
+        //dumb
+        players[0].GetComponent<CharacterController>().enabled = false; // <----- very dumb
+        players[1].GetComponent<CharacterController>().enabled = false;
+        players[0].transform.position = oneOrigin.position;
+        players[1].transform.position = twoOrigin.position;
+        players[0].GetComponent<CharacterController>().enabled = true; //<---- like why even?
+        players[1].GetComponent<CharacterController>().enabled = true;
+
+        // -_-
         levelHasStarted = true;
     }
 
@@ -57,6 +68,7 @@ public class GameManager : MonoBehaviour
 
             players[0].GetComponent<PlayerMovement>().oppositePlayer = players[1].GetComponent<PlayerMovement>();
             players[1].GetComponent<PlayerMovement>().oppositePlayer = players[0].GetComponent<PlayerMovement>();
+            
             waitingScreen.SetActive(false);
             StartLevel();
         } else {

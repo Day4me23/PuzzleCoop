@@ -8,23 +8,32 @@ public class KeyHole : Interactable
     [Header("For specific orb requirements")]
     [SerializeField] private bool needsID;
     [SerializeField] private int requiredIdentification;
-    
+    private bool hasKey;
     public override void Interact(GameObject obj) {
-        //base.Interact(obj);
-        if (needsID) {
-            if(obj.GetComponent<Orb>().orb_id != requiredIdentification) {
-                //wrong orb
-                PedestalManager.instance.FindPedestal(obj.GetComponent<Orb>().orb_pedestalID, obj.GetComponent<Orb>().orb_id);
-                Destroy(obj);
-                return;
-            } 
+        if (!hasKey) {
+            //base.Interact(obj);
+            if (needsID) {
+                if (obj.GetComponent<Orb>().orb_id != requiredIdentification) {
+                    //wrong orb
+                    PedestalManager.instance.FindPedestal(obj.GetComponent<Orb>().orb_pedestalID, obj.GetComponent<Orb>().orb_id);
+                    Destroy(obj);
+                    return;
+                }
+            }
+            obj.GetComponent<Collider>().enabled = false;
+            obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            obj.transform.position = origin.position;
+            active = true;
+            hasKey = true;
+            if (source.CheckIfActive()) {
+                source.GetComponent<Door>().GetComponent<BoxCollider>().enabled = true;
+            }
         }
-
-        obj.GetComponent<Collider>().enabled = false;
-        obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        obj.transform.position = origin.position;
-        active = true;
-        source.CheckIfActive();
+        else {
+            PedestalManager.instance.FindPedestal(obj.GetComponent<Orb>().orb_pedestalID, obj.GetComponent<Orb>().orb_id);
+            Destroy(obj);
+            return;
+        }
     }
 
 }

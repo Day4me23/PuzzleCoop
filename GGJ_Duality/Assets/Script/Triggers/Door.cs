@@ -24,6 +24,7 @@ public class Door : Triggerable
             if (!opened) { //if not opened
                 if (CheckIfActive()) {
                     //checks to see if the door can open
+
                     StopAllCoroutines();
                     StartCoroutine(OpenDoor(totalTime));
                 }

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
+    
 
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject settingsMenu;
