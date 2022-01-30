@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class Platform : Triggerable
+public class Platform : MonoBehaviour
 {
+    [SerializeField] KeyHole trigger;
     public bool backtrack = false;
     public List<Node> nodes = new List<Node>();
 
@@ -35,7 +36,7 @@ public class Platform : Triggerable
             return;
         }
 
-        if (active)
+        if (trigger.active)
         {
             //if (!paused) percent += nodes[nodeCur].GetSpeed(backtracking) * Time.deltaTime;
             if (!paused)
