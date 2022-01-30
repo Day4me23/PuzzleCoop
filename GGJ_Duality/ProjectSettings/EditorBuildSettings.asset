@@ -6,6 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/URP/Scenes/SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
+    path: Assets/Scene/Main_Menu.unity
+    guid: a7fff5085de509e4c9ceefc6b55eab7d
+  - enabled: 1
+    path: Assets/Scene/Levels/Tutorial.unity
+    guid: 8f495f50c7220b14591963cb32c5aee7
+  - enabled: 1
+    path: Assets/Scene/Levels/AntiGravLevel.unity
+    guid: ca3485e8d619da848ac726254626f988
+  - enabled: 1
+    path: Assets/Scene/Levels/SlowFallLevel.unity
+    guid: c46070fb85dbab346a69ef63b8dc6d88
+  - enabled: 1
+    path: Assets/Scene/Levels/FastSpeedScene.unity
+    guid: 88ab5856222535d498b4ff9c21e248bb
+  - enabled: 1
+    path: Assets/Scene/Levels/FinalLevel.unity
+    guid: 080cb7cbeaafdcd448d80af7df27f952
   m_configObjects: {}
