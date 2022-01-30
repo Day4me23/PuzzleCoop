@@ -7,14 +7,13 @@ using UnityEngine.SceneManagement;
 public class EndScene : MonoBehaviour
 {
     [SerializeField] GameObject Background;
-    public void END()
+    private void Start()
     {
-        Background.SetActive(true);
         StartCoroutine(Thing());
     }
     IEnumerator Thing()
     {
-        yield return new WaitForSecondsRealtime(10);
+        yield return new WaitForSecondsRealtime(15);
         SceneManager.LoadScene("Main_Menu");
     }
 }
