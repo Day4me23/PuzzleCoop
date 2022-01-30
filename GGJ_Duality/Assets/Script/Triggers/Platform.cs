@@ -35,9 +35,9 @@ public class Platform : MonoBehaviour
             Debug.LogError("Out of bounds, add mode nodes.");
             return;
         }
-
-        if (trigger.active)
-        {
+        if (trigger != null)
+            if (!trigger.active)
+                return;
             //if (!paused) percent += nodes[nodeCur].GetSpeed(backtracking) * Time.deltaTime;
             if (!paused)
             {
@@ -51,7 +51,7 @@ public class Platform : MonoBehaviour
                 StartCoroutine(NextNode());
                 percent = 0;
             }
-        }
+        
     }
 
     public float GetCircutTime()
