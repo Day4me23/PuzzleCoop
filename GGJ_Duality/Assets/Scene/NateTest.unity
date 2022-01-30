@@ -460,7 +460,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 925546fb0bfcf2d4ea4aabf582ea4f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggers: []
+  triggers:
+  - {fileID: 0}
   active: 0
   backtrack: 0
   nodes:
