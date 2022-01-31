@@ -842,6 +842,12 @@ MonoBehaviour:
   player_two_rightText: {fileID: 1887554684284752829}
   playerOneModel: {fileID: 9190602873449444328, guid: b96b732eb26b0e142b232a7c68cc27da, type: 3}
   playerTwoModel: {fileID: 8192412983651554111, guid: 8bd0e3976505b5f40b56c831fdd50415, type: 3}
+  player_one_layer:
+    serializedVersion: 2
+    m_Bits: 512
+  player_two_layer:
+    serializedVersion: 2
+    m_Bits: 1024
   levelHasStarted: 0
   players: []
 --- !u!114 &1887554684878821670
