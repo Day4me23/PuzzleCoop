@@ -193,7 +193,7 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyboardMouse",
                     "action": "ThrowLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -215,7 +215,7 @@
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyboardMouse",
                     "action": "ThrowRIght",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -224,17 +224,6 @@
                     "name": "",
                     "id": "52cfd954-d11f-4e2d-9f1b-4bee6d4bc258",
                     "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "ThrowRIght",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b98358b8-c004-4d9d-a6e2-e32ec8cb51e9",
-                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",

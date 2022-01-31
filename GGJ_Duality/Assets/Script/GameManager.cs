@@ -64,13 +64,13 @@ public class GameManager : MonoBehaviour
     {
         amountOfPlayers++;
         //Change back to 2 players
-        if (amountOfPlayers == 1) {
+        if (amountOfPlayers == 2) {
             Debug.Log("Grabbing players!");
             players.Clear();
             GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
             foreach (GameObject player in temp) players.Add(player.gameObject);
             // Remove after testing
-            foreach (GameObject player in temp) players.Add(player.gameObject);
+           // foreach (GameObject player in temp) players.Add(player.gameObject);
 
             players[0].GetComponent<PlayerMovement>().oppositePlayer = players[1].GetComponent<PlayerMovement>();
             players[1].GetComponent<PlayerMovement>().oppositePlayer = players[0].GetComponent<PlayerMovement>();
