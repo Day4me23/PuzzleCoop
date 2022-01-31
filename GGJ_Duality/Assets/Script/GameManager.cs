@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject playerOneModel;
     [SerializeField] private GameObject playerTwoModel;
+    [SerializeField] private LayerMask player_one_layer;
+    [SerializeField] private LayerMask player_two_layer; 
 
     public bool levelHasStarted;
     #region Singleton
@@ -55,6 +57,8 @@ public class GameManager : MonoBehaviour
         players[1].transform.position = twoOrigin.position;
         players[0].GetComponent<CharacterController>().enabled = true; //<---- like why even?
         players[1].GetComponent<CharacterController>().enabled = true;
+
+        players[0].transform.GetChild(1).GetComponent<Camera>().cullingMask &= ~player_one_layer;
 
         // -_-
         levelHasStarted = true;
