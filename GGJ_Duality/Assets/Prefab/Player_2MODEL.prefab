@@ -4769,7 +4769,7 @@ GameObject:
   - component: {fileID: 3851275050513076855}
   m_Layer: 10
   m_Name: DEF-spine.004
-  m_TagString: Untagged
+  m_TagString: Player_Two_Head_Model
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

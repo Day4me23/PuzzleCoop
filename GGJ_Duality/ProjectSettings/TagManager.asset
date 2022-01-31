@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Orb
   - KeyHole
+  - Player_One_Head_Model
+  - Player_Two_Head_Model
   layers:
   - Default
   - TransparentFX

@@ -82,12 +82,13 @@ public class GameManager : MonoBehaviour
             model_1.transform.parent = players[0].GetComponent<PlayerMovement>().model;
             model_1.transform.localPosition = Vector3.zero;
             model_1.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            players[0].transform.GetChild(1).GetComponent<CameraMovement>().headModel = GameObject.FindGameObjectWithTag("Player_One_Head_Model");
 
             GameObject model_2 = Instantiate(playerTwoModel, players[1].GetComponent<PlayerMovement>().model.position, Quaternion.identity);
             model_2.transform.parent = players[1].GetComponent<PlayerMovement>().model;
             model_2.transform.localPosition = Vector3.zero;
             model_2.transform.localRotation = Quaternion.Euler(0, 0, 0);
-
+            players[1].transform.GetChild(1).GetComponent<CameraMovement>().headModel = GameObject.FindGameObjectWithTag("Player_Two_Head_Model");
             waitingScreen.SetActive(false);
             StartLevel();
         } else {
