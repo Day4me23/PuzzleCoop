@@ -5,6 +5,6 @@ using UnityEngine;
 public class Trigger : MonoBehaviour 
 {
     [Header("Trigger Variables")]
-    public Triggerable source;
+    public List<Triggerable> sources = new List<Triggerable>();
     public bool active;
 }

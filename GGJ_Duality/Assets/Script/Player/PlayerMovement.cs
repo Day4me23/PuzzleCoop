@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private OrbHolderManager orbHolder;
 
     private Vector3 movement;
-    [SerializeField] private Vector3 velocity;
+    public Vector3 velocity;
     [SerializeField] private bool jumped;
 
     [Header("Ground Detection")]
