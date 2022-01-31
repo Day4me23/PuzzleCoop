@@ -25,10 +25,16 @@ public class DieZone : MonoBehaviour
         if (collision.gameObject.CompareTag("Player")) {
             Debug.Log("A player has landed in a deadZone");
             if (collision.transform.GetComponent<PlayerMovement>() != null) {
-                collision.gameObject.transform.position = collision.transform.GetComponent<PlayerMovement>().currentCheckpoint.position;
+                TeleportPlayer(collision.gameObject);
+                //collision.gameObject.transform.position = collision.transform.GetComponent<PlayerMovement>().currentCheckpoint.position;
             }
         }
-            
-        
+    }
+
+    private void TeleportPlayer(GameObject player) {
+        player.GetComponent<CharacterController>().enabled = false;
+        player.GetComponent<PlayerMovement>().velocity = Vector3.zero;
+        player.transform.position = player.GetComponent<PlayerMovement>().currentCheckpoint.position;
+        player.GetComponent<CharacterController>().enabled = true;
     }
 }

@@ -25,9 +25,14 @@ public class KeyHole : Interactable
             obj.transform.position = origin.position;
             active = true;
             hasKey = true;
-            if (source.CheckIfActive()) {
-                source.GetComponent<Door>().GetComponent<BoxCollider>().enabled = true;
-            }
+
+            foreach (Triggerable source in sources) {
+                if (source.CheckIfActive()) {
+                    if(source.GetComponent<Door>() != null) {
+                        source.GetComponent<Door>().GetComponent<BoxCollider>().enabled = true;
+                    }
+                }
+            }  
         }
         else {
             PedestalManager.instance.FindPedestal(obj.GetComponent<Orb>().orb_pedestalID, obj.GetComponent<Orb>().orb_id);
