@@ -30,7 +30,11 @@ public class Orb : MonoBehaviour
             other.GetComponent<KeyHole>().Interact(this.gameObject);
         } else {
             if (other.GetComponent<BoxCollider>() != null) {
-                if (!other.GetComponent<BoxCollider>().isTrigger) {
+                if (other.GetComponent<DieZone>() == null) {
+                    if (!other.GetComponent<BoxCollider>().isTrigger) {
+                        DeleteOrb();
+                    }
+                } else {
                     DeleteOrb();
                 }
             }
