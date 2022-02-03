@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
         players[1].GetComponent<CharacterController>().enabled = true;
 
         players[0].transform.GetChild(1).GetComponent<Camera>().cullingMask &= ~player_one_layer;
-
+        players[1].transform.GetChild(1).GetComponent<Camera>().cullingMask &= ~player_two_layer;
         // -_-
         levelHasStarted = true;
     }
