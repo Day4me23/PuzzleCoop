@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private Transform groundCheckObject;
     [SerializeField] private float groundDistance = 0.2f;
-
+    [SerializeField] private bool onPlatform; //might fix bug
     [Header("Jumping")]
     [SerializeField] private float jumpHeight = 2f;
     private float defaultJumpHeight;
@@ -66,6 +66,7 @@ public class PlayerMovement : MonoBehaviour {
     private void FixedUpdate() {
         if (GameManager.instance.levelHasStarted) {
             //isGrounded = controller.isGrounded;
+            
             isGrounded = groundCheckObject.GetComponent<GroundCheck>().CheckGround(groundCheckObject.position, 0.2f, playerLayer);
 
             if (isGrounded && velocity.y < 0f && !flipped) { //if player is on the ground
@@ -87,12 +88,22 @@ public class PlayerMovement : MonoBehaviour {
                 }
 
             }
-            //gravity
+
             velocity.y += gravity * fallSpeed * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
         }
     }
 
+    private void OnControllerColliderHit(ControllerColliderHit hit) {
+        if (hit.collider.gameObject.CompareTag("Platform")) {
+            onPlatform = true;
+            this.transform.parent = hit.gameObject.transform;
+        } else {
+            onPlatform = false;
+            this.transform.parent = null;
+        }
+    }
+   
     /// <summary>
     /// Reads value into the context to create the movement vector. 
     /// </summary>

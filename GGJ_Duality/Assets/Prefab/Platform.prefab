@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3119524623575466758}
   m_Layer: 0
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -327,9 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 925546fb0bfcf2d4ea4aabf582ea4f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggers:
-  - {fileID: 0}
-  active: 1
+  trigger: {fileID: 0}
   backtrack: 0
   nodes:
   - pos: {x: 79, y: -13.25, z: 4.499996}

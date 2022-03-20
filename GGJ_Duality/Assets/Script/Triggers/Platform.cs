@@ -106,8 +106,8 @@ public class Platform : MonoBehaviour
         else nodes[nodeCur].speedMain = Vector3.Distance(nodes[nodeCur].pos, nodes[nodeTar].pos) / (1 / nodes[nodeCur].GetSpeed(false));
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
+   /* private void OnTriggerEnter(Collider other)
+    { NO LONGER NEEDED. THIS CODE IS IN THE PLAYERMOVEMENT SCRIPT 
         if (other.transform.GetComponent<PlayerMovement>())
             other.transform.parent = transform;
     }
@@ -115,7 +115,7 @@ public class Platform : MonoBehaviour
     {
         if (other.transform.GetComponent<PlayerMovement>())
             other.transform.parent = GameObject.Find(holder).transform;
-    }
+    } */
 }
 [System.Serializable]
 public class Node
